@@ -22,9 +22,6 @@ if output.returncode == 0:
         total_gres = node["gres"]
         alloc_gres = node["gres_used"]
 
-       "gres": "gpu:a100:1",
-       "gres_used": "gpu:a100:1(IDX:0)"
-
         # Calculate the percentage of consumed memory
         percent_mem = round(alloc_mem / total_mem * 100, 2)
         available_cpus = total_cpus - alloc_cpus
@@ -36,8 +33,8 @@ if output.returncode == 0:
         print(f"Total memory: {total_mem} MB")
         print(f"Percentage of consumed memory: {percent_mem}%")
         print(f"Available CPUs: {available_cpus} out of {total_cpus}")
-        if total_gres:
-            print(f"{alloc_gres})
+        if len(total_gres) > 0:
+            print(f"{alloc_gres}")
         print()
 else:
 # Print an error message if the command failed
